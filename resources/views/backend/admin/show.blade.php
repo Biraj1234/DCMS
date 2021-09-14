@@ -31,7 +31,15 @@
 
                         <tr>
                             <th>Full Form</th>
-                            <td>{{$data['row']->short_form}}</td>
+                            <td>{{$data['row']->email}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Profile Picture</th>
+                            <td>
+                                <img src="{{asset('uploads/'.$data['row']->profile_picture)}}" height="80px" alt="">
+
+                            </td>
                         </tr>
 
                         <tr>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Costume extends Model
 {
     protected $table='costumes';
-    protected $fillable=['name','rental_amount','size_id','costume_type_id','photo','created_by','updated_by','status','gender'];
+    protected $fillable=['name','rental_amount','size_id','costume_type_id','photo','created_by','updated_by','status','gender','feature_costume','slider_costume','top_costume'];
 
     function size()
     {

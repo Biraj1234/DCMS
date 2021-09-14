@@ -6,6 +6,7 @@ use \App\Http\Controllers\Backend\SizeController;
 use \App\Http\Controllers\Backend\AdminController;
 use \App\Http\Controllers\Backend\CostumeTypeController;
 use \App\Http\Controllers\Backend\CostumeController;
+use App\Http\Controllers\Frontend\HomeController;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,10 +20,15 @@ use \App\Http\Controllers\Backend\CostumeController;
     */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    Route::post('/home', [HomeController::class,'index'])->name('home');
+
 });
 
 Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
 
 Route::get('/home', [\App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('home');
 

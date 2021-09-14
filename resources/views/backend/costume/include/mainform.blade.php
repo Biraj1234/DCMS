@@ -1,6 +1,6 @@
 <!--Name-->
 <div class="form-group">
-    {!! Form::label('name','Name',['class'=>'control-label']) !!}
+    {!! Form::label('name','Title',['class'=>'control-label']) !!}
 
     {!! Form::text('name',null,['class'=>'form-control']) !!}
 
@@ -60,6 +60,23 @@
     {!! Form::label('gender','For',['class'=>'control-label']) !!}
     {!! Form::radio('gender',1) !!}Boy
     {!! Form::radio('gender',0,true) !!}Girl
+</div>
+
+<div class="form-group">
+    {!! Form::label('feature_costume','Featured',['class'=>'control-label']) !!}
+    {!! Form::radio('feature_costume',1) !!}Active
+    {!! Form::radio('feature_costume',0,true) !!}Inactive
+</div>
+
+<div class="form-group">
+    {!! Form::label('slider_costume','Slider',['class'=>'control-label']) !!}
+    {!! Form::radio('slider_costume',1) !!}Active
+    {!! Form::radio('slider_costume',0,true) !!}Inactive
+</div>
+<div class="form-group">
+    {!! Form::label('top_costume','Top',['class'=>'control-label']) !!}
+    {!! Form::radio('top_costume',1) !!}Active
+    {!! Form::radio('top_costume',0,true) !!}Inactive
 </div>
 
 
