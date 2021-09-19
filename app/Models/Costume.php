@@ -30,4 +30,11 @@ class Costume extends Model
         return $this->belongsTo(User::class,'updated_by');
     }
 
+    function images(){
+        return $this->hasMany(CostumeImages::class);
+    }
+    function  costumeImages(){
+        return $this->hasMany(CostumeImages::class);
+    }
+
 }

@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'a012126f21abe33212d32d5f16cf6bd2a26c58fa',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -458,6 +458,15 @@
         0 => 'v8.60.0',
       ),
     ),
+    'intervention/image' => 
+    array (
+      'pretty_version' => '2.6.1',
+      'version' => '2.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0925f10b259679b5d8ca58f3a2add9255ffcda45',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -476,12 +485,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'a012126f21abe33212d32d5f16cf6bd2a26c58fa',
     ),
     'laravel/sail' => 
     array (

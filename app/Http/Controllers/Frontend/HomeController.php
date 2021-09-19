@@ -16,7 +16,6 @@ class HomeController extends FrontBaseController
     protected $model='Home';
 
     public function index(){
-        $data['slider-costume'] = Costume::where('slider_costume','1')->get();
         $data['top-costume'] = Costume::where('top_costume','1')->get();
         $data['slider-costume'] = Costume::where('slider_costume','1')->get();
         $data['feature-costume'] = Costume::where('feature_costume','1')->get();

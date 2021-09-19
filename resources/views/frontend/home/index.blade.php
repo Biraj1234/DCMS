@@ -152,11 +152,15 @@
             </div>
             <div class="col-md-6">
                 <div class="header-slider normal-slider">
-
                     @foreach($data['slider-costume'] as $costume)
+                        @php
+                            $image = $costume->images->first();
+                        @endphp
                     <div class="header-slider-item">
-                        <img src="{{asset('uploads/'.$costume->photo)}}" alt="Slider Image" />
-                        <div class="slider-details">
+                        @if($image)
+                        <img src="{{asset('images/costume/600_400_'.$image->name)}}" alt="Slider Image" />
+                        @endif
+                            <div class="slider-details">
                         <p class="slider-name">{{$costume->name}}</p>
                         <p class="rent">Rs.{{$costume->rental_amount}} per day</p>
                         </div>
@@ -168,9 +172,14 @@
             <div class="col-md-3">
                 <div class="header-img">
                     @foreach($data['top-costume'] as $top)
+                        @php
+                        $image = $top->images->first();
+                        @endphp
                     <div class="img-item">
-                        <img src="{{asset('uploads/'.$top->photo)}}" />
-                        <a class="img-text" href="">
+                        @if($image)
+                        <img src="{{asset('images/costume/275_200_'.$image->name)}}" />
+                        @endif
+                            <a class="img-text" href="">
                             <p>{{$top->name}}</p>
                         </a>
                     </div>
@@ -192,6 +201,9 @@
         <div class="row align-items-center">
 
             @foreach($data['feature-costume'] as $featured)
+                @php
+                $image=$featured->images->first();
+                @endphp
             <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
@@ -206,7 +218,7 @@
                     </div>
                     <div class="product-image">
                         <a href="product-detail.html">
-                            <img src="{{asset('uploads/'.$featured->photo)}}" height="275px" width="275px" alt="Product Image">
+                            <img src="{{asset('images/costume/275_275_'.$image->name)}}" alt="Product Image">
                         </a>
                         <div class="product-action">
                             <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -254,6 +266,9 @@
         </div>
         <div class="row align-items-center">
             @foreach($data['recent-costume'] as $recent)
+                @php
+                $image=$recent->images->first();
+                @endphp
             <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
@@ -261,7 +276,8 @@
                     </div>
                     <div class="product-image">
                         <a href="product-detail.html">
-                            <img src="{{asset('uploads/'.$recent->photo)}}" height="275px" width="275px" alt="Product Image">
+
+                            <img src="{{asset('images/costume/275_275_'.$image->name)}}"  alt="Product Image">
                         </a>
                         <div class="product-action">
                             <a href="#"><i class="fa fa-cart-plus"></i></a>

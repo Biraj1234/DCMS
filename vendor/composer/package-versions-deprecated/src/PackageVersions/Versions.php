@@ -50,6 +50,7 @@ final class Versions
   'guzzlehttp/guzzle' => '7.3.0@7008573787b430c1c1f650e3722d9bba59967628',
   'guzzlehttp/promises' => '1.4.1@8e7d04f1f6450fef59366c399cfad4b9383aa30d',
   'guzzlehttp/psr7' => '2.0.0@1dc8d9cba3897165e16d12bb13d813afb1eb3fe7',
+  'intervention/image' => '2.6.1@0925f10b259679b5d8ca58f3a2add9255ffcda45',
   'laravel/framework' => 'v8.60.0@44f16a31a1d4ac8a51605550d7796e2273984a48',
   'laravel/sanctum' => 'v2.11.2@b21e65cbe13896946986cb0868180cd69e1bd5d3',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
@@ -150,7 +151,7 @@ final class Versions
   'sebastian/type' => '2.3.4@b8cd8a1c753c90bc1a0f5372170e3e489136f914',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-master@d957a9b14dbd7e74405174823e3f171d3efc5489',
+  'laravel/laravel' => 'dev-master@a012126f21abe33212d32d5f16cf6bd2a26c58fa',
 );
 
     private function __construct()

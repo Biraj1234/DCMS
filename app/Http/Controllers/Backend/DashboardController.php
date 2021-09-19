@@ -13,6 +13,7 @@ class DashboardController extends BackendBaseController
     protected $panel='Dashboard';  //for section/moudule
     protected $folder='backend.dashboard.'; //for view file
     protected $base_route='backend.dashboard.'; //for route method
+    protected $folder_name='dashboard';
     protected $title;
     protected $model='Size';
 
