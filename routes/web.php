@@ -31,6 +31,8 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
 Route::get('/home', [\App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('home');
+Route::get('/product/{id}', [HomeController::class, 'productDetail'])->name('product.detail');
+
 
 Route::prefix('backend/')->name('backend.')->group(function()
 {

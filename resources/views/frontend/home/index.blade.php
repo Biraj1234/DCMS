@@ -1,473 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>E Store - eCommerce HTML Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="eCommerce HTML Template Free Download" name="keywords">
-    <meta content="eCommerce HTML Template Free Download" name="description">
+@extends('frontend.layout.master')
 
-    <!-- Favicon -->
-    <link href="{{asset('frontend/img/favicon.ico')}}" rel="icon">
+@section('content')
+    <!-- Main Slider Start -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <nav class="navbar bg-light">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Best Selling</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>New Arrivals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+                    <div class="header-slider normal-slider">
 
-    <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="{{asset('frontend/lib/slick/slick.css')}}" rel="stylesheet">
-    <link href="{{asset('frontend/lib/slick/slick-theme.css')}}" rel="stylesheet">
+                        @foreach($data['slider-costume'] as $costume)
+                            <a href="{{route('product.detail',$costume->id)}}">
+                            @php
+                                $image = $costume->images->first();
+                            @endphp
+                            <div class="header-slider-item">
+                                @if($image)
+                                    <img src="{{asset('images/costume/600_400_'.$image->name)}}" alt="Slider Image" />
+                                @endif
+                                <div class="slider-details">
+                                    <p class="slider-name">{{$costume->name}}</p>
+                                    <p class="rent">Rs.{{$costume->rental_amount}} per day</p>
+                                </div>
+                            </div>
+                            </a>
+                        @endforeach
 
-    <!-- Template Stylesheet -->
-    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
-</head>
-
-<body>
-<!-- Top bar Start -->
-<div class="top-bar">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <i class="fa fa-envelope"></i>
-                support@email.com
-            </div>
-            <div class="col-sm-6">
-                <i class="fa fa-phone-alt"></i>
-                +012-345-6789
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Top bar End -->
-
-<!-- Nav Bar Start -->
-<div class="nav">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">MENU</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav mr-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="product-list.html" class="nav-item nav-link">Products</a>
-                    <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                    <a href="cart.html" class="nav-item nav-link">Cart</a>
-                    <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                    <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                            <a href="login.html" class="dropdown-item">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
-                        </div>
                     </div>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div>
-<!-- Nav Bar End -->
-
-<!-- Bottom Bar Start -->
-<div class="bottom-bar">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-3">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="{{asset('logo.png')}}" alt="Logo">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="user">
-                    <a href="wishlist.html" class="btn wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>(0)</span>
-                    </a>
-                    <a href="cart.html" class="btn cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Bottom Bar End -->
-
-<!-- Main Slider Start -->
-<div class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <nav class="navbar bg-light">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Best Selling</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>New Arrivals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-md-6">
-                <div class="header-slider normal-slider">
-                    @foreach($data['slider-costume'] as $costume)
-                        @php
-                            $image = $costume->images->first();
-                        @endphp
-                    <div class="header-slider-item">
-                        @if($image)
-                        <img src="{{asset('images/costume/600_400_'.$image->name)}}" alt="Slider Image" />
-                        @endif
-                            <div class="slider-details">
-                        <p class="slider-name">{{$costume->name}}</p>
-                        <p class="rent">Rs.{{$costume->rental_amount}} per day</p>
-                        </div>
-                    </div>
-                    @endforeach
 
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="header-img">
-                    @foreach($data['top-costume'] as $top)
-                        @php
-                        $image = $top->images->first();
-                        @endphp
-                    <div class="img-item">
-                        @if($image)
-                        <img src="{{asset('images/costume/275_200_'.$image->name)}}" />
-                        @endif
-                            <a class="img-text" href="">
-                            <p>{{$top->name}}</p>
-                        </a>
-                    </div>
-                    @endforeach
+                <div class="col-md-3">
+                    <div class="header-img">
+                        @foreach($data['top-costume'] as $top)
+                            @php
+                                $image = $top->images->first();
+                            @endphp
+                            <div class="img-item">
+                                @if($image)
+                                    <img src="{{asset('images/costume/275_200_'.$image->name)}}" />
+                                @endif
+                                <a class="img-text" href="{{route('product.detail',$top->id)}}">
+                                    <p>{{$top->name}}</p>
+                                </a>
+                            </div>
+                        @endforeach
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Main Slider End -->
-
-<!-- Featured Product Start -->
-<div class="featured-product product">
-    <div class="container-fluid">
-        <div class="section-header">
-            <h1>Featured Product</h1>
-        </div>
-        <div class="row align-items-center">
-
-            @foreach($data['feature-costume'] as $featured)
-                @php
-                $image=$featured->images->first();
-                @endphp
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">{{$featured->name}}</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="{{asset('images/costume/275_275_'.$image->name)}}" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>Rs</span>{{$featured->rental_amount}}</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-
-        </div>
-    </div>
-</div>
-<!-- Featured Product End -->
-
-<!-- Newsletter Start -->
-<div class="newsletter">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Subscribe Our Newsletter</h1>
-            </div>
-            <div class="col-md-6">
-                <div class="form">
-                    <input type="email" value="Your email here">
-                    <button>Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Newsletter End -->
-
-<!-- Recent Product Start -->
-<div class="recent-product product">
-    <div class="container-fluid">
-        <div class="section-header">
-            <h1>Recent Product</h1>
-        </div>
-        <div class="row align-items-center">
-            @foreach($data['recent-costume'] as $recent)
-                @php
-                $image=$recent->images->first();
-                @endphp
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">{{$recent->name}}</a>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-
-                            <img src="{{asset('images/costume/275_275_'.$image->name)}}"  alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>Rs</span>{{$recent->rental_amount}}</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-<!-- Recent Product End -->
-
-<!-- Review Start -->
-<div class="review">
-    <div class="container-fluid">
-        <div class="row align-items-center review-slider normal-slider">
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-1.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-2.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-3.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Review End -->
+    <!-- Main Slider End -->
 
-<!-- Footer Start -->
-<div class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-info">
-                        <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                        <p><i class="fa fa-envelope"></i>email@example.com</p>
-                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                    </div>
-                </div>
+    <!-- Featured Product Start -->
+    <div class="featured-product product">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Featured Product</h1>
             </div>
+            <div class="row align-items-center">
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Follow Us</h2>
-                    <div class="contact-info">
-                        <div class="social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
+                @foreach($data['feature-costume'] as $featured)
+                    @php
+                        $image=$featured->images->first();
+                    @endphp
+                    <div class="col-lg-3">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="{{route('product.detail',$featured->id)}}">{{$featured->name}}</a>
+                            </div>
+                            <div class="product-image">
+                                <a href="{{route('product.detail',$featured->id)}}">
+                                    <img src="{{asset('images/costume/275_275_'.$image->name)}}" alt="Product Image">
+                                </a>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>Rs</span>{{$featured->rental_amount}}</h3>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @endforeach
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Company Info</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Purchase Info</h2>
-                    <ul>
-                        <li><a href="#">Pyament Policy</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="row payment align-items-center">
-            <div class="col-md-6">
-                <div class="payment-method">
-                    <h2>We Accept:</h2>
-                    <img src="img/payment-method.png" alt="Payment Method" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="payment-security">
-                    <h2>Secured By:</h2>
-                    <img src="img/godaddy.svg" alt="Payment Security" />
-                    <img src="img/norton.svg" alt="Payment Security" />
-                    <img src="img/ssl.svg" alt="Payment Security" />
-                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Featured Product End -->
 
-<!-- Footer Bottom Start -->
-<div class="footer-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 copyright">
-                <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+
+    <!-- Recent Product Start -->
+    <div class="recent-product product">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Recent Product</h1>
             </div>
+            <div class="row align-items-center">
+                @foreach($data['recent-costume'] as $recent)
+                    @php
+                        $image=$recent->images->first();
+                    @endphp
+                    <div class="col-lg-3">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="{{route('product.detail',$recent->id)}}">{{$recent->name}}</a>
+                            </div>
+                            <div class="product-image">
+                                <a href="{{route('product.detail',$recent->id)}}">
 
-            <div class="col-md-6 template-by">
-                <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                                    <img src="{{asset('images/costume/275_275_'.$image->name)}}"  alt="Product Image">
+                                </a>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>Rs</span>{{$recent->rental_amount}}</h3>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
-</div>
-<!-- Footer Bottom End -->
+    <!-- Recent Product End -->
 
-<!-- Back to Top -->
-<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+@endsection
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{asset('frontend/lib/easing/easing.min.js')}}"></script>
-<script src="{{asset('frontend/lib/slick/slick.min.js')}}"></script>
-
-<!-- Template Javascript -->
-<script src="{{asset('frontend/js/main.js')}}"></script>
-</body>
-</html>
