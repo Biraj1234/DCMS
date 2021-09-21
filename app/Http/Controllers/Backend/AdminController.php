@@ -15,6 +15,7 @@ class AdminController extends BackendBaseController
     protected $panel='Admin';  //for section/moudule
     protected $folder='backend.admin.'; //for view file
     protected $base_route='backend.admin.'; //for route method
+    protected $folder_name='admin.'; //for route method
     protected $title;
     protected $model='User';
 

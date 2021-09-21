@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+
+    </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -36,8 +39,13 @@
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
+
           </div>
+
         </div>
+          @error('email')
+                        <p class="text text-danger"> {{$message}}</p>
+                           @enderror
         <div class="input-group mb-3">
           <input id="password" name="password" type="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
@@ -46,6 +54,9 @@
             </div>
           </div>
         </div>
+         @error('password')
+               <p class="text text-danger"> {{$message}}</p>
+                  @enderror
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

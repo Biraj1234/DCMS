@@ -26,31 +26,22 @@ class BackendBaseController
         return $viewPath;
     }
 
-    protected function uploadImage(Request $request,$image_field_name)
-    {
-
-        $image=$request->file($image_field_name);
+    protected function uploadImage(Request $request, $image_field_name){
+        $image = $request->file($image_field_name);
         $image_name=rand(6785,9814).'_'.$image->getClientOriginalName();
         $image->move($this->image_path,$image_name);
-
-        if(count(config('image_dimension.'.$this->folder_name.'.images'))>0)
-        {
-            foreach (config('image_dimension.'.$this->folder_name.'.images') as $dimension)
-            {
-                $img=Image::make($this->image_path.$image_name)->resize($dimension['width'],$dimension['height']);
+        if(count(config('image_dimension.'.$this->folder_name.'.images'))>0){
+            foreach (config('image_dimension.'.$this->folder_name.'.images') as $dimension) {
+                $img = Image::make($this->image_path.$image_name)->resize($dimension['width'],$dimension['height']);
                 $img->save($this->image_path.$dimension['width'].'_'.$dimension['height'].'_'.$image_name);
             }
         }
-        /*$img=Image::make($this->image_path.$image_name)->resize(160,160);
-        $img->save($this->image_path.'160_160'.$image_name);
-        */
         return $image_name;
-
     }
 
     protected function deleteImage($image_name){
         $image_namee = $this->image_path.$image_name;
-        dd($image_namee);
+//        dd($image_namee);
 
         if (file_exists($image_namee)) {
             unlink($image_namee);

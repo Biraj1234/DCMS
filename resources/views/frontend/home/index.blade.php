@@ -91,9 +91,7 @@
             <div class="row align-items-center">
 
                 @foreach($data['feature-costume'] as $featured)
-                    @php
-                        $image=$featured->images->first();
-                    @endphp
+
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
@@ -101,7 +99,12 @@
                             </div>
                             <div class="product-image">
                                 <a href="{{route('product.detail',$featured->id)}}">
+                                    @php
+                                        $image=$featured->images->first();
+                                    @endphp
+                                    @if($image)
                                     <img src="{{asset('images/costume/275_275_'.$image->name)}}" alt="Product Image">
+                                    @endif
                                 </a>
                             </div>
                             <div class="product-price">

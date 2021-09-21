@@ -3,11 +3,12 @@
     {!! Form::label('name','Name',['class'=>'control-label']) !!}
 
     {!! Form::text('name',null,['class'=>'form-control']) !!}
+    @error('name')
+    <p class="text text-danger">{{$message}}</p>
+    @enderror
 
 </div>
-@error('name')
-<p class="text text-danger">{{$message}}</p>
-@enderror
+
 
 
 <div class="form-group">

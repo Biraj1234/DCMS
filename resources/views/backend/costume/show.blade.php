@@ -47,7 +47,10 @@
                         <tr>
                             <th>Photo</th>
                             <td>
-                                <img src="{{asset('uploads/'. $data['row']->photo)}}" alt="" width="100px" height="100px">
+                                @php
+                                $image =  $data['row']->images()->first();
+                                @endphp
+                                <img src="{{asset('images/costume/275_275_'. $image->name)}}" alt="">
                             </td>
                         </tr>
 

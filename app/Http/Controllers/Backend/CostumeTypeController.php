@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CostumeTypeRequest;
 use App\Models\CostumeType;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class CostumeTypeController extends BackendBaseController
     protected $panel='CostumeType';  //for section/moudule
     protected $folder='backend.costumeType.'; //for view file
     protected $base_route='backend.costumeType.'; //for route method
+    protected $folder_name='costumeType'; //for route method
     protected $title;
     protected $model='CostumeType';
 
@@ -36,7 +38,7 @@ class CostumeTypeController extends BackendBaseController
     }
 
 
-    public function store(Request $request)
+    public function store(CostumeTypeRequest $request)
     {
 
         $request->request->add(['created_by'=>auth()->user()->id]);
@@ -53,9 +55,7 @@ class CostumeTypeController extends BackendBaseController
     }
 
 
-    public function show($id)
-    {
-
+    public function show($id){
         $data['row']=$this->model->find($id);
         if(!$data['row'])
         {

@@ -43,6 +43,9 @@
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
+                @error('password')
+               <p class="text text-danger"> {{$message}}</p>
+                @enderror
             </div>
           </div>
         </div>

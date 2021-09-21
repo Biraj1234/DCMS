@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
 
-            {!!  Form::model($data['row'], ['route' => [$base_route.'update', $data['row']->id]]) !!}
+            {!!  Form::model($data['row'], ['route' => [$base_route.'update',$data['row']->id],'method'=>'post','files'=>'true']) !!}
             {!! Form::hidden('_method','PUT') !!}
 
 

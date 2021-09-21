@@ -47,6 +47,7 @@ class CostumeController extends BackendBaseController
 
     public function store(CostumeRequest $request)
     {
+
         $file=$request->file('costume_photo');
         $request->request->add(['created_by'=>auth()->user()->id]);
         $data['row']=$this->model->create($request->all());
@@ -56,7 +57,6 @@ class CostumeController extends BackendBaseController
                 $imageArray['name']=$image;
                 $request->request->add(['image'=>$image]);
             }
-            //For Image
             $imageArray['costume_id']=$data['row']->id;
             CostumeImages::create($imageArray);
             $request->session()->flash('success',$this->panel.' successfully created');
@@ -66,6 +66,34 @@ class CostumeController extends BackendBaseController
             $request->session()->flash('error','Error in creating'.$this->panel);
         }
         return redirect()->route($this->base_route.'index');
+    }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $data['row'] = $this->model->find($id);
+        if ($data['row']) {
+            if ($request->hasFile('costume_photo')) {
+                if ($data['row']->images()->first()) {
+                    if ($data['row']->images()->count() > 0) {
+                        $this->deleteImage($data['row']->images()->first()->name);
+                    }
+                    $data['row']->images()->first()->delete();
+                }
+
+                $image = $this->uploadImage($request, 'costume_photo');
+                $imageArray['name'] = $image;
+                $imageArray['costume_id'] = $data['row']->id;
+                CostumeImages::create($imageArray);
+                $request->session()->flash('success', $this->panel . ' successfully updated');
+            }
+
+            else {
+                $request->session()->flash('error', 'Error in updating' . $this->panel);
+            }
+            return redirect()->route($this->base_route . 'index');
+        }
     }
 
 
@@ -95,31 +123,7 @@ class CostumeController extends BackendBaseController
     }
 
 
-    public function update(Request $request, $id)
-    {
-        $data['row'] = $this->model->find($id);
-        if ($data['row']) {
-            if ($request->hasFile('costume_photo')) {
-                if ($data['row']->images()->first()) {
-                    if ($data['row']->images()->count() > 0) {
-                        $this->deleteImage($data['row']->images()->first()->name);
-                    }
-                    $data['row']->images()->first()->delete();
-                }
 
-                $image = $this->uploadImage($request, 'costume_photo');
-                $imageArray['name'] = $image;
-                $imageArray['costume_id'] = $data['row']->id;
-                CostumeImages::create($imageArray);
-                $request->session()->flash('success', $this->panel . ' successfully updated');
-            }
-
-            else {
-                $request->session()->flash('error', 'Error in updating' . $this->panel);
-            }
-            return redirect()->route($this->base_route . 'index');
-        }
-    }
 
     public function destroy($id)
     {

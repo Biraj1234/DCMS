@@ -18,4 +18,6 @@ class FrontBaseController extends Controller
         });
         return $viewPath;
     }
+
+
 }

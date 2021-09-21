@@ -26,6 +26,7 @@
                             <th>S.No</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Profile Picture</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -40,6 +41,9 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->email}}</td>
+                                <td>
+                                    <img src="{{asset('uploads/'.$data->profile_picture)}}" height="100px" width="100px" alt="">
+                                </td>
                                 <td>
                                     @if($data->status==1)
                                         <p class="text text-success">Active</p>

@@ -78,7 +78,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="{{route('backend.admin.create')}}" class="nav-link">
+                    <a href="{{route('backend.admin.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Admin

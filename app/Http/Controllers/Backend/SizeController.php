@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SizeRequest;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class SizeController extends BackendBaseController
     protected $panel='Size';  //for section/moudule
     protected $folder='backend.size.'; //for view file
     protected $base_route='backend.size.'; //for route method
+    protected $folder_name='size'; //for route method
     protected $title;
     protected $model='Size';
 
@@ -36,7 +38,7 @@ class SizeController extends BackendBaseController
     }
 
 
-    public function store(Request $request)
+    public function store(SizeRequest $request)
     {
 
         $request->request->add(['created_by'=>auth()->user()->id]);
@@ -78,7 +80,7 @@ class SizeController extends BackendBaseController
     }
 
 
-    public function update(Request $request, $id)
+    public function update(SizeRequest $request, $id)
     {
         $request->request->add(['updated_by'=>auth()->user()->id]);
         $data['row']=$this->model->find($id);
