@@ -4,49 +4,21 @@ namespace App\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Authenticatable;
-
 use Illuminate\Support\Facades\Auth;
-use App\Models\Customer;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
     public function showLoginForm(){
-//        dd('test');
         $title='Sign in';
         return view('frontend.customer.signin',compact('title'));
     }
 
     public function login(Request $request){
-        //        dd($request->all());
-
-//        $email=$request->email;
-//        $password=$request->password;
-//        $data['info'] = Customer::where('email',$email)->first();
-//        if ($email == $data['info']->email){
-//            if (password_verify($password, $data['info']->password)) {
-//                return view('frontend.');
-//            } else {
-//                dd('failed');
-//            }
-//        } else{
-//            customer.login
-//        }
-//
-//        if(Auth::attempt(['email'=>$email,'password'=>$password]))
-//        {
-//            dd('Hello');
-//            return redirect()->intended('frontend.home.index');
-//        } else{
-//            dd('Fail');
-//        }
-
-
+//        dd($request->all());
         $this->validator($request);
-        if(Auth::guard('customers')->attempt($request->only('email','password'),$request->filled('remember'))){
+        if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authentication passed...
-            return redirect()->route('frotend.customer.signin');
+            return redirect()->route('room_owner.home');
         }
 
         //Authentication failed...
@@ -55,9 +27,9 @@ class LoginController extends Controller
 
 
     public function logout(){
-        Auth::guard('customers')->logout();
+        Auth::guard('customer')->logout();
         return redirect()
-            ->route('customers.login')
+            ->route('room_owner.login')
             ->with('status','Admin has been logged out!');
     }
 
@@ -65,13 +37,13 @@ class LoginController extends Controller
     private function validator(Request $request){
         //validation rules.
         $rules = [
-            'email'    => 'required|email|exists:customers|min:5|max:191',
-            'password' => 'required|string|min:4|max:255',
+            'email'=> 'required|exists:customers|min:5|max:191',
+            'password'=> 'required'
         ];
 
         //custom validation error messages.
         $messages = [
-            'email.exists' => 'These credentials do not match our records.',
+            'email.exists' => "These credentials didn't match our records. Please try again",
         ];
 
         //validate the request.

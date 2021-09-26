@@ -30,37 +30,37 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name"</label>
-                                <input class="form-control" type="text" name="lname" placeholder="Last Name">
+                                <input class="form-control" type="text" name="lname" placeholder="Last Name" value={{old('lname')}}>
                                 @error('lname')
                                 <p class="text text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>E-mail</label>
-                                <input class="form-control" name="email" type="text" placeholder="E-mail">
+                                <input class="form-control" name="email" type="text" placeholder="E-mail" value={{old('email')}}>
                                 @error('email')
                                 <p class="text text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile No</label>
-                                <input class="form-control" name="mobile_number" type="text" placeholder="Mobile No">
+                                <input class="form-control" name="mobile_number" type="text" placeholder="Mobile No" value={{old('mobile_number')}}>
                                 @error('mobile_number')
                                 <p class="text text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Password</label>
-                                <input class="form-control" name="password" type="password" placeholder="Password">
+                                <input class="form-control" name="password" type="password" placeholder="Password" value={{old('password')}}>
                                 @error('password')
                                 <p class="text text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Retype Password</label>
-                                <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password">
+                                <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" value={{old('cpassword')}}>
                                 @error('cpassword')
-                                <p class="text text-danger">Please confirm your password</p>
+                                <p class="text text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="col-md-12">

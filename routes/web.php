@@ -37,6 +37,7 @@ Route::get('/product/{id}', [HomeController::class, 'productDetail'])->name('pro
 
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('frontend.customer.create');
 Route::post('/customer/store', [CustomerController::class, 'store'])->name('frontend.customer.store');
+Route::get('/customer', [CustomerController::class, 'index'])->name('frontend.customer.index');
 
 
 
@@ -60,7 +61,7 @@ Route::prefix('/customer')->name('customer.')->namespace('Customer')->group(func
         //Login Routes
         Route::get('/login',[LoginController::class,'showLoginForm'])->name('login');
         Route::post('/login',[LoginController::class,'login']);
-        Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+        Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
     });
 });

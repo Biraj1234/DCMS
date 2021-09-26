@@ -25,9 +25,7 @@ class CustomerRequest extends FormRequest
            'email'=>'required|email|unique:customers',
            'mobile_number'=>'required|unique:customers|min:10',
            'password'=>'required',
-           'cpassword'=>'required',
-
-
+           'cpassword'=>'required|same:password',
         ];
     }
 }

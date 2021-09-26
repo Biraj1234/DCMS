@@ -51,6 +51,7 @@
                                 <p>Size</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{route('backend.costumeType.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -59,6 +60,9 @@
                         </li>
                     </ul>
                 </li>
+
+
+
 
 
 
@@ -82,6 +86,27 @@
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Admin
+                        </p>
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item has-treeview">
+                    <a href="{{route('frontend.customer.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Customers
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="{{route('backend.costume.index')}}" class="nav-link">
+                        <i class=" nav-icon fas fa-cart-arrow-down"></i>
+                        <p>
+                            Bookings
                         </p>
                     </a>
 

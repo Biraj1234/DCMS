@@ -48,7 +48,7 @@ return [
             'hash' =>   false,
         ],
 
-        'customers' => [
+        'customer' => [
             'driver' => 'session',
             'provider' => 'customers',
         ]

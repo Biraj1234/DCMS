@@ -25,11 +25,17 @@
                                 {!!  Form::open(['route' => 'customer.login','method'=>'post','files'=>'true','required']) !!}
 
                                 <label>E-mail / Username</label>
-                                <input class="form-control" type="text" name="email" placeholder="E-mail">
+                                <input class="form-control" type="text" name="email" id="email" placeholder="E-mail">
+                                @error('email')
+                                <p class="text text-danger"> {{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Password</label>
-                                <input class="form-control" type="password" name="password" placeholder="Password">
+                                <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                @error('password')
+                                <p class="text text-danger"> {{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="custom-control custom-checkbox">

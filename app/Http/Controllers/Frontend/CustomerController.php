@@ -25,6 +25,10 @@ class CustomerController extends FrontBaseController
 
 
     public function index(){
+        $this->title='List';
+        $data['rows']=$this->model->all();
+//        dd($data['rows']);
+        return view($this->__loadDataToView($this->folder.'index'),compact('data'));
 
     }
 
@@ -80,6 +84,16 @@ class CustomerController extends FrontBaseController
      */
     public function destroy($id)
     {
-        //
+        $data['row']=$this->model->find($id);
+        $data['row']->delete();
+        if($data['row'])
+        {
+            request()->session()->flash('success',$this->panel.' successfully deleted');
+        }
+        else
+        {
+            request()->session()->flash('error','Error in deleting'.$this->panel);
+        }
+        return redirect()->route($this->base_route.'index');
     }
 }
