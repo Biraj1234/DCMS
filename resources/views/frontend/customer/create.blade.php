@@ -23,27 +23,45 @@
                             <div class="col-md-6">
                                 {!!  Form::open(['route' =>'frontend.customer.store','method'=>'post']) !!}
                                 <label>First Name</label>
-                                <input class="form-control" type="text" name="fname" placeholder="First Name">
+                                <input class="form-control" type="text" name="fname" placeholder="First Name" value={{old('fname')}}>
+                                @error('fname')
+                                <p class="text text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name"</label>
                                 <input class="form-control" type="text" name="lname" placeholder="Last Name">
+                                @error('lname')
+                                <p class="text text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>E-mail</label>
                                 <input class="form-control" name="email" type="text" placeholder="E-mail">
+                                @error('email')
+                                <p class="text text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile No</label>
                                 <input class="form-control" name="mobile_number" type="text" placeholder="Mobile No">
+                                @error('mobile_number')
+                                <p class="text text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Password</label>
                                 <input class="form-control" name="password" type="password" placeholder="Password">
+                                @error('password')
+                                <p class="text text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Retype Password</label>
-                                <input class="form-control" type="password" name="cname" placeholder="Password">
+                                <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password">
+                                @error('cpassword')
+                                <p class="text text-danger">Please confirm your password</p>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 {!!  Form::submit('Submit',['class'=>'btn btn-primary']) !!}

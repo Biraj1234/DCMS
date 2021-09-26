@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class CustomerController extends FrontBaseController
         return view($this->__loadDataToView($this->folder.'create'));
     }
 
-    public function store(Request $request){
+    public function store(CustomerRequest $request){
 //        dd($request->all());
         $request->request->add(['password'=>Hash::make($request->input('password'))]);
         $data['row']=$this->model->create($request->all());
@@ -45,7 +46,7 @@ class CustomerController extends FrontBaseController
         else{
             $request->session()->flash('error','Error in creating'.$this->panel);
         }
-        return redirect()->route('customer.create');
+        return redirect()->route('customer.login');
     }
 
 

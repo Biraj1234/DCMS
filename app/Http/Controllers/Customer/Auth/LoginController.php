@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Customer\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Models\Customer;
+
 use Illuminate\Support\Facades\Auth;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -17,11 +19,34 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-//        dd($request->all());
+        //        dd($request->all());
+
+//        $email=$request->email;
+//        $password=$request->password;
+//        $data['info'] = Customer::where('email',$email)->first();
+//        if ($email == $data['info']->email){
+//            if (password_verify($password, $data['info']->password)) {
+//                return view('frontend.');
+//            } else {
+//                dd('failed');
+//            }
+//        } else{
+//            customer.login
+//        }
+//
+//        if(Auth::attempt(['email'=>$email,'password'=>$password]))
+//        {
+//            dd('Hello');
+//            return redirect()->intended('frontend.home.index');
+//        } else{
+//            dd('Fail');
+//        }
+
+
         $this->validator($request);
         if(Auth::guard('customers')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authentication passed...
-            return redirect()->route('customers.home');
+            return redirect()->route('frotend.customer.signin');
         }
 
         //Authentication failed...
