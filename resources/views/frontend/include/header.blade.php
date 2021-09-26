@@ -69,11 +69,29 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
-                            <a href="{{route('frontend.customer.create')}}" class="dropdown-item">Register</a>
-                        </div>
+
+
+                        @if(isset(Auth::guard('customer')->user()->id))
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                {{Auth::guard('customer')->user()->fname}} {{Auth::guard('customer')->user()->lname}}
+
+                            </a>
+                            <div class="dropdown-menu">
+
+                                <a href="{{route('customer.home')}}" class="dropdown-item">Dashboard</a>
+                                <a href="{{route('customer.logout')}}" class="dropdown-item">Logout</a>
+                            </div>
+
+                        @else
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                            <div class="dropdown-menu">
+
+                                <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
+                                <a href="{{route('frontend.customer.create')}}" class="dropdown-item">Register</a>
+                            </div>
+                        @endif
+
+
                     </div>
                 </div>
             </div>

@@ -3,22 +3,25 @@
 namespace App\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Frontend\FrontBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
     public function showLoginForm(){
         $title='Sign in';
         return view('frontend.customer.signin',compact('title'));
     }
 
     public function login(Request $request){
-//        dd($request->all());
         $this->validator($request);
         if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authentication passed...
-            return redirect()->route('room_owner.home');
+            return redirect()->route('customer.home');
+
+
         }
 
         //Authentication failed...
@@ -29,7 +32,7 @@ class LoginController extends Controller
     public function logout(){
         Auth::guard('customer')->logout();
         return redirect()
-            ->route('room_owner.login')
+            ->route('customer.login')
             ->with('status','Admin has been logged out!');
     }
 
@@ -43,7 +46,7 @@ class LoginController extends Controller
 
         //custom validation error messages.
         $messages = [
-            'email.exists' => "These credentials didn't match our records. Please try again",
+//            'email.exists' => "These credentials didn't match our records. Please try again",
         ];
 
         //validate the request.

@@ -97,4 +97,10 @@ class HomeController extends FrontBaseController
     {
         //
     }
+
+    public function dashboard(){
+        $this->title='hello';
+        return view($this->__loadDataToView('frontend.customer.dashboard'));
+
+    }
 }
