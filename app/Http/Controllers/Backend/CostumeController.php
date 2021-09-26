@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CostumeRequest;
 use App\Models\Costume;
+use App\Models\Customer;
 use App\Models\CostumeImages;
 use App\Models\CostumeType;
 use App\Models\RoomImage;
@@ -45,8 +46,7 @@ class CostumeController extends BackendBaseController
     }
 
 
-    public function store(CostumeRequest $request)
-    {
+    public function store(CostumeRequest $request){
 
         $file=$request->file('costume_photo');
         $request->request->add(['created_by'=>auth()->user()->id]);
@@ -73,7 +73,9 @@ class CostumeController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $data['row'] = $this->model->find($id);
+        $data['row']->update($request->all());
         if ($data['row']) {
+
             if ($request->hasFile('costume_photo')) {
                 if ($data['row']->images()->first()) {
                     if ($data['row']->images()->count() > 0) {
@@ -86,6 +88,7 @@ class CostumeController extends BackendBaseController
                 $imageArray['name'] = $image;
                 $imageArray['costume_id'] = $data['row']->id;
                 CostumeImages::create($imageArray);
+
                 $request->session()->flash('success', $this->panel . ' successfully updated');
             }
 

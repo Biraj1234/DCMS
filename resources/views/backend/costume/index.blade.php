@@ -33,7 +33,7 @@
                         </thead>
 
                         <tbody>
-                        @foreach($data['rows'] as $index=>$data)
+                        @forelse($data['rows'] as $index=>$data)
 
                             <tr>
 
@@ -66,7 +66,11 @@
                                 </td>
 
                             </tr>
-                        @endforeach
+                        @empty
+                         <tr>
+                             <td colspan="6" style="text-align: center; color: red">   <p>No costumes added</p></td>
+                         </tr>
+                        @endforelse
                         </tbody>
 
                     </table>

@@ -30,11 +30,11 @@
         <div class="row">
             <div class="col-sm-6">
                 <i class="fa fa-envelope"></i>
-                support@email.com
+               asthadresscenter@email.com
             </div>
             <div class="col-sm-6">
                 <i class="fa fa-phone-alt"></i>
-                +012-345-6789
+               046-530275
             </div>
         </div>
     </div>
@@ -71,8 +71,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
+                            <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
+                            <a href="{{route('frontend.customer.create')}}" class="dropdown-item">Register</a>
                         </div>
                     </div>
                 </div>

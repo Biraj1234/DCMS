@@ -54,6 +54,9 @@
     @error('costume_photo')
     <p class="text text-danger">{{$message}}</p>
     @enderror
+    @if(isset($data['row']))
+    <img src="{{asset('images/costume/275_275_'.$data['row']->images()->first()->name)}}" height="100px" alt="">
+    @endif
 </div>
 
 <div class="form-group">

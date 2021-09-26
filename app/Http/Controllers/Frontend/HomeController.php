@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Costume;
+
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,7 @@ class HomeController extends FrontBaseController
         $data['slider-costume'] = Costume::where('slider_costume','1')->get();
         $data['feature-costume'] = Costume::where('feature_costume','1')->get();
         $data['recent-costume'] = Costume::orderBy('created_at','desc')->get();
+        $data['related-product'] = Costume::all();
         return view($this->__loadDataToView($this->folder.'index'),compact('data'));
 
     }
@@ -29,7 +31,7 @@ class HomeController extends FrontBaseController
     public  function productDetail($id){
 
         $data['row']=Costume::find($id);
-        $data['related-costume'] =Costume::where('id',$id)->get();
+        $data['related-costume'] = Costume::all()->except($id);
         $data['size']=Size::all();
         $this->title= $data['row']->costumeType->name;
         return view($this->__loadDataToView($this->folder.'detail'),compact('data'));

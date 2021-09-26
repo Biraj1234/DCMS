@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Costume;
+use App\Models\Customer;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -21,7 +21,7 @@ class DashboardController extends BackendBaseController
 
     public function index()
     {
-        $data['costumes'] = Costume::count();
+        $data['costumes'] = Customer::count();
         return view($this->__loadDataToView($this->folder.'index'),compact('data'));
 
     }
