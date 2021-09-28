@@ -104,6 +104,9 @@ class HomeController extends FrontBaseController
 
     public function dashboard(){
         $this->title='Dashboard';
-        return view($this->__loadDataToView('frontend.dashboard.home'));
+        $id=Auth::guard('customer')->user()->id;
+        $data['booking']= Booking::where('customer_id',$id)->get();
+
+        return view($this->__loadDataToView('frontend.customer.dashboard'),compact('data'));
     }
 }

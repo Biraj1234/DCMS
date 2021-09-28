@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
+use App\Models\Booking;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends FrontBaseController
@@ -95,5 +97,13 @@ class CustomerController extends FrontBaseController
             request()->session()->flash('error','Error in deleting'.$this->panel);
         }
         return redirect()->route($this->base_route.'index');
+    }
+
+    function bookings(){
+        $this->title ="My Bookings";
+        $id=Auth::guard('customer')->user()->id;
+        $data['booking']= Booking::where('customer_id',$id)->get();
+        return view($this->__loadDataToView('frontend.dashboard.bookings'),compact('data'));
+
     }
 }

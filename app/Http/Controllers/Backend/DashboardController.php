@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Costume;
 use App\Models\Customer;
 use App\Models\Size;
@@ -24,6 +25,7 @@ class DashboardController extends BackendBaseController
     {
         $data['costumes'] = Costume::count();
         $data['customers'] = Customer::count();
+        $data['bookings'] = Booking::count();
 
         return view($this->__loadDataToView($this->folder.'index'),compact('data'));
 

@@ -103,7 +103,7 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                    <a href="{{route('backend.costume.index')}}" class="nav-link">
+                    <a href="{{route('booking.Backindex')}}" class="nav-link">
                         <i class=" nav-icon fas fa-cart-arrow-down"></i>
                         <p>
                             Bookings

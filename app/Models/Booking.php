@@ -14,5 +14,9 @@ class Booking extends Model
         return $this->belongsTo(BookingDetail::class,'booking_details_id');
     }
 
+    function customer(){
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
+
 
 }

@@ -41,6 +41,11 @@ Route::post('/customer/store', [CustomerController::class, 'store'])->name('fron
 //Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
 Route::get('/customer', [CustomerController::class, 'index'])->name('frontend.customer.index');
 
+Route::get('/bookings', [CustomerController::class, 'bookings'])->name('dashboard.bookings');
+Route::get('/bookingss', [BookingController::class, 'backIndex'])->name('booking.Backindex');
+
+Route::get('/changeStatus/{id}', [BookingController::class, 'statusChange'])->name('status.change');
+
 
 Route::resource('booking',BookingController::class);
 
@@ -50,10 +55,12 @@ Route::resource('booking',BookingController::class);
 
 Route::prefix('backend/')->name('backend.')->group(function()
 {
+
     Route::resource('size',SizeController::class);
     Route::resource('costumeType',CostumeTypeController::class);
     Route::resource('admin',AdminController::class);
     Route::resource('costume',CostumeController::class);
+
 
 });
 

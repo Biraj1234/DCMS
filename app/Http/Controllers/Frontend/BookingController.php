@@ -67,7 +67,7 @@ class BookingController extends FrontBaseController
                     Booking::create($bookingData);
                 }
                 $request->session()->flash('success','Your booking is successfull');
-                return redirect()->route('customer.home');
+                return redirect()->route('dashboard.bookings');
             }
         else{
             $request->session()->flash('error','Please login to book your costume!');
@@ -111,12 +111,21 @@ class BookingController extends FrontBaseController
         $data['row']->delete();
         if($data['row'])
         {
-            request()->session()->flash('success','Your booking is canceled');
+            request()->session()->flash('success','Your booking was canceled');
         }
         else
         {
             request()->session()->flash('error','Error in deleting'.$this->panel);
         }
-        return redirect()->route('customer.home');
+        return redirect()->route('dashboard.bookings');
+    }
+    public function backIndex(){
+        $data['rows']=Booking::all();
+        return view($this->__loadDataToView('backend.booking.index'),compact('data'));
+
+    }
+    public function statusChange($id){
+        Booking::where('id',$id)->update(array('order_status'=>'1'));
+        return redirect()->route('booking.Backindex');
     }
 }
