@@ -61,28 +61,28 @@
                                     </thead>
                                     <tbody>
                                     @forelse($data['booking'] as $index=>$costume)
-                                    <tr>
-                                        <td>{{$index+1}}</td>
-                                        <td>{{$costume->bookingDetail->costume->name}}</td>
-                                        <td>{{$costume->order_code}}</td>
-                                        <td>{{$costume->bookingDetail->size}}</td>
-                                        <td>{{$costume->bookingDetail->quantity}}</td>
-                                        <td>{{$costume->bookingDetail->price}}</td>
-                                        <td>{{$costume->bookingDetail->total_price}}</td>
-                                        <td>{{$costume->booking_date}}</td>
-                                        <td>
+                                        <tr>
+                                            <td>{{$index+1}}</td>
+                                            <td>{{$costume->bookingDetail->costume->name}}</td>
+                                            <td>{{$costume->order_code}}</td>
+                                            <td>{{$costume->bookingDetail->size}}</td>
+                                            <td>{{$costume->bookingDetail->quantity}}</td>
+                                            <td>{{$costume->bookingDetail->price}}</td>
+                                            <td>{{$costume->bookingDetail->total_price}}</td>
+                                            <td>{{$costume->booking_date}}</td>
+                                            <td>
 
-                                            {!!  Form::open(['route' => ['booking.destroy',$costume->id],'method'=>'post','class'=>'d-inline']) !!}
+                                                {!!  Form::open(['route' => ['booking.destroy',$costume->id],'method'=>'post','class'=>'d-inline']) !!}
 
-                                            {!! Form::hidden('_method','DELETE') !!}
+                                                {!! Form::hidden('_method','DELETE') !!}
 
-                                            {!!  Form::submit('Cancel',['class'=>'btn btn-danger','onclick'=>"return confirm('Are you sure you want to delete this item?');"]) !!}
+                                                {!!  Form::submit('Cancel',['class'=>'btn btn-danger','onclick'=>"return confirm('Are you sure you want to delete this item?');"]) !!}
 
-                                            {!! Form::close() !!}
+                                                {!! Form::close() !!}
 
 
 
-                                        </td>
+                                            </td>
                                     @empty
                                         <tr>
                                             <td style="color:red"; colspan="9">No bookings are made</td>

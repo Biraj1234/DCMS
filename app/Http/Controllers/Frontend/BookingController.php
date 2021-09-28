@@ -111,12 +111,12 @@ class BookingController extends FrontBaseController
         $data['row']->delete();
         if($data['row'])
         {
-            request()->session()->flash('success',$this->panel.' successfully deleted');
+            request()->session()->flash('success','Your booking is canceled');
         }
         else
         {
             request()->session()->flash('error','Error in deleting'.$this->panel);
         }
-        return redirect()->route($this->base_route.'index');
+        return redirect()->route('customer.home');
     }
 }
