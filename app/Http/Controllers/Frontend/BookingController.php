@@ -48,34 +48,27 @@ class BookingController extends FrontBaseController
     public function store(BookingRequest $request){
 //        dd($request->all());
         if(isset(Auth::guard('customer')->user()->id)){
-            $bookingData=[];
-            $bookingData['customer_id']=Auth::guard('customer')->user()->id;
-            $bookingData['order_code']=uniqid();
-            $bookingData['booking_date']=date('Y-m-d H:i:s');
-            $bookingData['price']=$request->price;
-            $qty = $request->qty;
-            $size = $request->size;
-            $product_id= $request->product_id;
-            $bookingData['total_price']=$bookingData['price'] * $qty;
-//        dd($bookingData);
-
-            if($order = Booking::create($bookingData))
-            {
                 $bookingDetails=[];
-                $bookingDetails['booking_id']=$order->id;
-                $bookingDetails['costume_id']=$product_id;
+                $bookingDetails['costume_id']=$request->product_id;
+                $qty = $request->qty;
                 $bookingDetails['quantity']=$qty;
+                $size = $request->size;
                 $bookingDetails['size']=$size;
-                $bookingDetails['price']=$order->price;
-                $bookingDetails['total_price']=$order->total_price;
-                BookingDetail::create($bookingDetails);
+                $bookingDetails['price']=$request->price;
+                $bookingDetails['total_price']=$bookingDetails['price'] * $qty;
+//                dd($bookingDetails);
 
+                if($details = BookingDetail::create($bookingDetails)){
+                    $bookingData=[];
+                    $bookingData['customer_id']=Auth::guard('customer')->user()->id;
+                    $bookingData['order_code']=uniqid();
+                    $bookingData['booking_date']=date('Y-m-d H:i:s');
+                    $bookingData['booking_details_id']=$details->id;
+                    Booking::create($bookingData);
+                }
                 $request->session()->flash('success','Your booking is successfull');
                 return redirect()->route('customer.home');
             }
-
-
-        }
         else{
             $request->session()->flash('error','Please login to book your costume!');
             return redirect()->route('customer.login');

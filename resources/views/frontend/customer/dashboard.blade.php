@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 
+
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-wrap">
         <div class="container-fluid">
@@ -52,22 +53,25 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Product</th>
-                                        <th>Date</th>
+                                        <th>Order Code</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Total Price</th>
+                                        <th>Booking Date</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['product-details'] as $index=>$costume)
+                                    @foreach($data['booking'] as $index=>$costume)
                                     <tr>
                                         <td>{{$index+1}}</td>
-                                        <td>{{$costume->name}}</td>
+                                        <td>{{$costume->bookingDetail->costume->name}}</td>
+                                        <td>{{$costume->order_code}}</td>
+                                        <td>{{$costume->bookingDetail->size}}</td>
+                                        <td>{{$costume->bookingDetail->quantity}}</td>
+                                        <td>{{$costume->bookingDetail->price}}</td>
+                                        <td>{{$costume->bookingDetail->total_price}}</td>
                                         <td>{{$costume->booking_date}}</td>
-                                        <td>{{$costume->price}}</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

@@ -15,8 +15,6 @@ class CreateBookingDetailsTable extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('booking_id');
-            $table->foreign('booking_id')->references('id')->on('booking');
             $table->unsignedBigInteger('costume_id');
             $table->foreign('costume_id')->references('id')->on('costumes');
             $table->integer('quantity');
