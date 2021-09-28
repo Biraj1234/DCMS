@@ -3,23 +3,28 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookingRequest;
 use App\Http\Requests\CustomerRequest;
+use App\Models\Booking;
+use App\Models\BookingDetail;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class CustomerController extends FrontBaseController
+class BookingController extends FrontBaseController
 {
-    protected $panel='Customer';  //for section/moudule
+    protected $panel='Booking';  //for section/moudule
     protected $folder='frontend.customer.'; //for view file
     protected $base_route='frontend.customer.'; //for route method
     protected $folder_name='customer'; //for route method
     protected $title;
-    protected $model='Customer';
+    protected $model='Booking';
 
     function __construct(){
-        $this->model=new Customer();
+        $this->model=new Booking();
 
     }
 
@@ -40,17 +45,42 @@ class CustomerController extends FrontBaseController
         return view($this->__loadDataToView($this->folder.'create'));
     }
 
-    public function store(CustomerRequest $request){
+    public function store(BookingRequest $request){
 //        dd($request->all());
-        $request->request->add(['password'=>Hash::make($request->input('password'))]);
-        $data['row']=$this->model->create($request->all());
-        if($data['row']) {
-            $request->session()->flash('success','Your account succesfully created!!');
+        if(isset(Auth::guard('customer')->user()->id)){
+            $bookingData=[];
+            $bookingData['customer_id']=Auth::guard('customer')->user()->id;
+            $bookingData['order_code']=uniqid();
+            $bookingData['booking_date']=date('Y-m-d H:i:s');
+            $bookingData['price']=$request->price;
+            $qty = $request->qty;
+            $size = $request->size;
+            $product_id= $request->product_id;
+            $bookingData['total_price']=$bookingData['price'] * $qty;
+//        dd($bookingData);
+
+            if($order = Booking::create($bookingData))
+            {
+                $bookingDetails=[];
+                $bookingDetails['booking_id']=$order->id;
+                $bookingDetails['costume_id']=$product_id;
+                $bookingDetails['quantity']=$qty;
+                $bookingDetails['size']=$size;
+                $bookingDetails['price']=$order->price;
+                $bookingDetails['total_price']=$order->total_price;
+                BookingDetail::create($bookingDetails);
+
+                $request->session()->flash('success','Your booking is successfull');
+                return redirect()->route('customer.home');
+            }
+
+
         }
         else{
-            $request->session()->flash('error','Error in creating'.$this->panel);
+            $request->session()->flash('error','Please login to book your costume!');
+            return redirect()->route('customer.login');
         }
-        return redirect()->route('customer.login');
+
     }
 
 

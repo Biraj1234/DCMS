@@ -19,8 +19,16 @@
             <div class="row">
 
                 <div class="col-lg-6">
+
                     <div class="login-form">
+                        @if(Session::has('success'))
+                            <p class="alert alert-success">{{Session::get('success')}}</p>
+                        @endif
+                        @if(Session::has('error'))
+                            <p class="alert alert-danger">{{Session::get('error')}}</p>
+                        @endif
                         <div class="row">
+
                             <div class="col-md-6">
                                 {!!  Form::open(['route' => 'customer.login','method'=>'post','files'=>'true','required']) !!}
 

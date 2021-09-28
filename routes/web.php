@@ -9,6 +9,7 @@ use \App\Http\Controllers\Backend\CostumeController;
 use App\Http\Controllers\Frontend\HomeController;
 use \App\Http\Controllers\Customer\Auth\LoginController;
 use \App\Http\Controllers\Frontend\CustomerController;
+use \App\Http\Controllers\Frontend\BookingController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -37,7 +38,11 @@ Route::get('/product/{id}', [HomeController::class, 'productDetail'])->name('pro
 
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('frontend.customer.create');
 Route::post('/customer/store', [CustomerController::class, 'store'])->name('frontend.customer.store');
+//Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
 Route::get('/customer', [CustomerController::class, 'index'])->name('frontend.customer.index');
+
+
+Route::resource('booking',BookingController::class);
 
 
 

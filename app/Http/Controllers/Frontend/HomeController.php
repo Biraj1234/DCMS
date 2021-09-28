@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\BookingDetail;
 use App\Models\Costume;
 
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends FrontBaseController
 {
@@ -30,6 +33,7 @@ class HomeController extends FrontBaseController
 
     public  function productDetail($id){
 
+        $data['product_id']=$id;
         $data['row']=Costume::find($id);
         $data['related-costume'] = Costume::all()->except($id);
         $data['size']=Size::all();
@@ -99,8 +103,9 @@ class HomeController extends FrontBaseController
     }
 
     public function dashboard(){
-        $this->title='hello';
-        return view($this->__loadDataToView('frontend.customer.dashboard'));
-
+        $this->title='Dashboard';
+        $id=Auth::guard('customer')->user()->id;
+        $data['product-details']= Booking::where('customer_id',$id)->get();
+        return view($this->__loadDataToView('frontend.customer.dashboard'),compact('data'));
     }
 }

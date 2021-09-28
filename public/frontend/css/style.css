@@ -862,6 +862,12 @@ h2 {
     padding: 20px 30px 15px 30px;
     color: #FF6F61;
     background: #ffffff;
+    width: 150%;
+}
+
+.product-content{
+    /*border: 1px solid red;*/
+    margin-left: -190px;
 }
 
 .product .slick-prev,
@@ -1052,11 +1058,13 @@ h2 {
 .product-detail .product-detail-top,
 .product-detail .product-detail-bottom {
     margin-bottom: 30px;
+    width: 154%;
 }
 
 .product-detail .product-detail-top {
     padding: 0;
     background: #ffffff;
+    width:150%;
 }
 
 .product-detail .product-slider-single img {

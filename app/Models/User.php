@@ -12,16 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
+    public $timestamps = false;
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'status',
+
         'profile_picture'
     ];
 

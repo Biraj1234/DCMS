@@ -1,5 +1,6 @@
 @extends('frontend.layout.master')
 @section('content')
+
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-wrap">
         <div class="container-fluid">
@@ -16,17 +17,27 @@
     <div class="my-account">
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-md-3">
+
                     <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
-                        <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
+                        <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>My Bookings</a>
                         <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
                         <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
                         <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
-                        <a class="nav-link" href="index.html"><i class="fa fa-sign-out-alt"></i>Logout</a>
+                        <a class="nav-link" href="{{route('customer.logout')}}"><i class="fa fa-sign-out-alt"></i>Logout</a>
                     </div>
                 </div>
+
                 <div class="col-md-9">
+                    @if(Session::has('success'))
+                        <p class="alert alert-success">{{Session::get('success')}}</p>
+                    @endif
+                    @if(Session::has('error'))
+                        <p class="alert alert-danger">{{Session::get('error')}}</p>
+                    @endif
+
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
                             <h4>Dashboard</h4>
@@ -48,30 +59,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($data['product-details'] as $index=>$costume)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
+                                        <td>{{$index+1}}</td>
+                                        <td>{{$costume->name}}</td>
+                                        <td>{{$costume->booking_date}}</td>
+                                        <td>{{$costume->price}}</td>
                                         <td>Approved</td>
                                         <td><button class="btn">View</button></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
