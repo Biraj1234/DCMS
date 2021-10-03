@@ -37,8 +37,8 @@
                                 <td>{{$booking->order_code}}</td>
                                 <td>{{$booking->size}}</td>
                                 <td>{{$booking->quantity}}</td>
-                                <td>{{$booking->price}}</td>
-                                <td>{{$booking->total_price}}</td>
+                                <td>Rs.{{$booking->price}}</td>
+                                <td>Rs.{{$booking->total_price}}</td>
                                 <td>{{$booking->booking_date}}</td>
 
                                 <td>
@@ -67,7 +67,7 @@
                             </td>
 
                             <td colspan="9">
-                                {{$total}}
+                               Rs.{{$total}}
                             </td>
                         </tr>
                     </table>

@@ -53,8 +53,8 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
                     <a href="{{route('index')}}" class="nav-item nav-link active">Home</a>
-                    <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                    <a href="my-account.html" class="nav-item nav-link">Dashboard</a>
+                    <a href="{{route('customer.home')}}" class="nav-item nav-link">My Account</a>
+                    <a href="{{route('customer.home')}}" class="nav-item nav-link">Dashboard</a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
