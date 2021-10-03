@@ -103,7 +103,8 @@ class CustomerController extends FrontBaseController
         $this->title ="My Bookings";
         $id=Auth::guard('customer')->user()->id;
         $data['booking']= Booking::where('customer_id',$id)->get();
-        return view($this->__loadDataToView('frontend.dashboard.bookings'),compact('data'));
+        $total = Booking::where('customer_id',$id)->sum('total_price');
+        return view($this->__loadDataToView('frontend.dashboard.bookings'),compact('data','total'));
 
     }
 }

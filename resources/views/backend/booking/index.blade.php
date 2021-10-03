@@ -2,12 +2,23 @@
 @section('title',$title)
 
 @section('content')
+
+    <style type="text/css">
+        @media print {
+            #datatable_wrapper .row:first-child {display:none;}
+            #datatable_wrapper .row:last-child {display:none;}
+            .no_print {display:none;}
+        }
+    </style>
+
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">{{$title}} {{$panel}}
+                <a class="btn btn-primary text-white no_print" id="printBtn" onclick="window.print()"><i class="nav-icon fas fa-print"></i>Print</a>
+
             </h3>
 
-            <div class="card-tools">
+            <div class="card-tools no_print">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fas fa-minus"></i></button>
                 <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
@@ -38,18 +49,18 @@
                     @forelse($data['rows'] as $index=>$costume)
                         <tr>
                             <td>{{$index+1}}</td>
-                            <td>{{$costume->bookingDetail->costume->name}}</td>
+                            <td>{{$costume->costume->name}}</td>
                             <td>{{$costume->order_code}}</td>
-                            <td>{{$costume->bookingDetail->size}}</td>
-                            <td>{{$costume->bookingDetail->quantity}}</td>
-                            <td>{{$costume->bookingDetail->total_price}}</td>
+                            <td>{{$costume->size}}</td>
+                            <td>{{$costume->quantity}}</td>
+                            <td>{{$costume->total_price}}</td>
                             <td>{{$costume->booking_date}}</td>
                             <td>{{$costume->customer->fname}} {{$costume->customer->lname}}</td>
                             <td>
                                 @if($costume->order_status==0)
-                                <a href="{{route('status.change',$costume->id)}}" class="btn btn-danger">Pending</a>
-                                @else
-                                    <a href="{{route('status.change',$costume->id)}}" class="btn btn-success">Dispatched</a>
+                                    <p class="text text-danger">Unpaid</p>
+                                 @else
+                                    <p class="text text-success">Paid</p>
                                 @endif
 
                             </td>
@@ -66,5 +77,22 @@
             </div>
         </div>
 @endsection
+        @section('js')
+            <script type="text/javascript" src="{{asset('backend/plugins/jQuery.print.min.js')}}"></script>
+            <script type="text/javascript">
+                $(function() {
+
+                    $("#printBtn").on('click', function() {
+
+                        $.print("#printable");
+
+                    });
+
+                });
+            </script>
+@endsection
+
+
+
 
 

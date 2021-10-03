@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Costume;
 use App\Models\Customer;
+use App\Models\Payment;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,9 @@ class DashboardController extends BackendBaseController
         $data['costumes'] = Costume::count();
         $data['customers'] = Customer::count();
         $data['bookings'] = Booking::count();
+        $total= Payment::sum('amount');
 
-        return view($this->__loadDataToView($this->folder.'index'),compact('data'));
+        return view($this->__loadDataToView($this->folder.'index'),compact('data','total'));
 
     }
 

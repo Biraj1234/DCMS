@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingDetailsTable extends Migration
+class AddColllsToBookingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateBookingDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_details', function (Blueprint $table) {
-            $table->id();
+        Schema::table('booking', function (Blueprint $table) {
             $table->unsignedBigInteger('costume_id');
             $table->foreign('costume_id')->references('id')->on('costumes');
             $table->integer('quantity');
             $table->string('size');
             $table->integer('price');
             $table->integer('total_price');
-            $table->timestamps();
+            $table->dropColumn('booking_details_id');
         });
     }
 
@@ -32,6 +31,8 @@ class CreateBookingDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_details');
+        Schema::table('booking', function (Blueprint $table) {
+            //
+        });
     }
 }

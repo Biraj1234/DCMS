@@ -10,6 +10,8 @@ use App\Http\Controllers\Frontend\HomeController;
 use \App\Http\Controllers\Customer\Auth\LoginController;
 use \App\Http\Controllers\Frontend\CustomerController;
 use \App\Http\Controllers\Frontend\BookingController;
+use \App\Http\Controllers\Frontend\StripeController;
+use \App\Http\Controllers\Backend\PaymentController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -46,8 +48,14 @@ Route::get('/bookingss', [BookingController::class, 'backIndex'])->name('booking
 
 Route::get('/changeStatus/{id}', [BookingController::class, 'statusChange'])->name('status.change');
 
+Route::get('/stripe', [StripeController::class, 'index'])->name('stripe.index');
+Route::post('/payment', [StripeController::class, 'stripePayment'])->name('stripe.post');
 
 Route::resource('booking',BookingController::class);
+
+Route::resource('pay',PaymentController::class);
+
+
 
 
 

@@ -16,24 +16,24 @@ use Illuminate\Support\Facades\Hash;
 
 class BookingController extends FrontBaseController
 {
-    protected $panel='Booking';  //for section/moudule
-    protected $folder='frontend.customer.'; //for view file
-    protected $base_route='frontend.customer.'; //for route method
-    protected $folder_name='customer'; //for route method
+    protected $panel = 'Booking';  //for section/moudule
+    protected $folder = 'frontend.customer.'; //for view file
+    protected $base_route = 'frontend.customer.'; //for route method
+    protected $folder_name = 'customer'; //for route method
     protected $title;
-    protected $model='Booking';
+    protected $model = 'Booking';
 
-    function __construct(){
-        $this->model=new Booking();
+    function __construct()
+    {
+        $this->model = new Booking();
 
     }
 
 
     public function index(){
-        $this->title='List';
-        $data['rows']=$this->model->all();
-//        dd($data['rows']);
-        return view($this->__loadDataToView($this->folder.'index'),compact('data'));
+        $this->title = 'List';
+        $data['fds'] = Booking::all();
+        return view($this->__loadDataToView($this->folder . 'index'), compact('data' ));
 
     }
 
@@ -41,40 +41,35 @@ class BookingController extends FrontBaseController
     public function create()
     {
 //        dd('hello');
-        $this->title='Create';
-        return view($this->__loadDataToView($this->folder.'create'));
+        $this->title = 'Create';
+        return view($this->__loadDataToView($this->folder . 'create'));
     }
 
     public function store(BookingRequest $request){
 //        dd($request->all());
-        if(isset(Auth::guard('customer')->user()->id)){
-                $bookingDetails=[];
-                $bookingDetails['costume_id']=$request->product_id;
-                $qty = $request->qty;
-                $bookingDetails['quantity']=$qty;
-                $size = $request->size;
-                $bookingDetails['size']=$size;
-                $bookingDetails['price']=$request->price;
-                $bookingDetails['total_price']=$bookingDetails['price'] * $qty;
-//                dd($bookingDetails);
+        if (isset(Auth::guard('customer')->user()->id)) {
+            $bookingData = [];
+            $bookingData['costume_id'] = $request->product_id;
+            $bookingData['quantity'] = $request->qty;
+            $bookingData['size'] =  $request->size;
+            $bookingData['price'] = $request->price;
+            $bookingData['total_price'] = $bookingData['price'] * $bookingData['quantity'];
+            $bookingData['customer_id'] = Auth::guard('customer')->user()->id;
+            $bookingData['order_code'] = uniqid();
+            $bookingData['booking_date'] = date('Y-m-d H:i:s');
+//            dd($bookingData);
+            Booking::create($bookingData);
 
-                if($details = BookingDetail::create($bookingDetails)){
-                    $bookingData=[];
-                    $bookingData['customer_id']=Auth::guard('customer')->user()->id;
-                    $bookingData['order_code']=uniqid();
-                    $bookingData['booking_date']=date('Y-m-d H:i:s');
-                    $bookingData['booking_details_id']=$details->id;
-                    Booking::create($bookingData);
-                }
-                $request->session()->flash('success','Your booking is successfull');
-                return redirect()->route('dashboard.bookings');
-            }
+        $request->session()->flash('success', 'Your booking is successfull');
+        return redirect()->route('dashboard.bookings');
+        }
         else{
             $request->session()->flash('error','Please login to book your costume!');
             return redirect()->route('customer.login');
         }
 
     }
+
 
 
     public function show($id){

@@ -16,8 +16,6 @@ class ModifyColumnstToBookingTable extends Migration
         Schema::table('booking', function (Blueprint $table) {
             $table->dropColumn('price');
             $table->dropColumn('total_price');
-            $table->unsignedBigInteger('booking_details_id');
-            $table->foreign('booking_details_id')->references('id')->on('booking_details');
         });
     }
 

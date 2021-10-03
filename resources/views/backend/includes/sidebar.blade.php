@@ -113,6 +113,17 @@
                 </li>
 
                 <li class="nav-item has-treeview">
+                    <a href="{{route('pay.index')}}" class="nav-link">
+                        <i class="nav-icon far fa-credit-card"></i>
+                        <p>
+                            Payment
+                        </p>
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item has-treeview">
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="nav-link">

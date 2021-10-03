@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <label>Mobile No</label>
+                                <label>Mobile Name</label>
                                 <input class="form-control" name="mobile_number" type="text" placeholder="Mobile No" value={{old('mobile_number')}}>
                                 @error('mobile_number')
                                 <p class="text text-danger">{{$message}}</p>
